@@ -100,13 +100,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 0
-  movementSpeed: 2
+  movementSpeed: 1.6
   center: {x: 0, y: 0, z: 0}
   maxHealth: 30
   health: 0
   damage: 1
-  attackSpeed: 1.25
+  attackSpeed: 1
   task: 0.5
+  ExpOrbPrefab: {fileID: 8877411773470940838, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
+  expDropChance: 50
 --- !u!50 &6379453572560599292
 Rigidbody2D:
   serializedVersion: 4

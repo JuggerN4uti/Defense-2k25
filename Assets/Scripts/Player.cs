@@ -26,11 +26,17 @@ public class Player : MonoBehaviour
     public int bullets, magazineSize;
     Bullet BulletScript;
 
+    [Header("Level / Experience")]
+    public int level;
+    public int experience, expRequired;
+
     [Header("HUD")]
     public TMPro.TextMeshProUGUI MagazineInfo;
 
     void Start()
     {
+        level = 1;
+        expRequired = ExperienceRequiredCalculate();
         Reload();
     }
 
@@ -137,5 +143,38 @@ public class Player : MonoBehaviour
     {
 
         //Body.velocity = move * movementSpeed * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag == "Exp Orb")
+        {
+            GainXP(1);
+            Destroy(other.gameObject);
+        }
+    }
+
+    void GainXP(int value)
+    {
+        experience += value;
+        if (experience >= expRequired)
+        {
+            experience -= expRequired;
+            LevelUp();
+        }
+    }
+
+    void LevelUp()
+    {
+        level++;
+        expRequired = ExperienceRequiredCalculate();
+        damage += 0.2f;
+        fireRate *= 0.98f;
+    }
+
+    // Checks
+    int ExperienceRequiredCalculate()
+    {
+        return 10 + level * 5 + level * level;
     }
 }

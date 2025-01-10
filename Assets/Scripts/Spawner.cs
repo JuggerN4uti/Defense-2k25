@@ -7,23 +7,27 @@ public class Spawner : MonoBehaviour
     public GameObject EnemyPrefab;
     public Transform SpawnPoint;
 
-    void Start()
+    public bool spawning;
+
+    public void Activate()
     {
-        Invoke("Spawn", 3f);
+        spawning = true;
+        Spawn();
     }
 
-    void Update()
+    public void Deactivate()
     {
-        
+        spawning = false;
     }
 
-    void Spawn()
+    public void Spawn()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, Random.Range(0f, 360f));
         SpawnPoint.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0f);
 
         Instantiate(EnemyPrefab, SpawnPoint.position, SpawnPoint.rotation);
 
-        Invoke("Spawn", 8f);
+        if (spawning)
+            Invoke("Spawn", 7.5f);
     }
 }

@@ -26,6 +26,10 @@ public class Enemy : MonoBehaviour
     public float attackSpeed, task;
     Base BaseScript;
 
+    [Header("Drop")]
+    public GameObject ExpOrbPrefab;
+    public float expDropChance;
+
     void Start()
     {
         health = maxHealth;
@@ -54,7 +58,14 @@ public class Enemy : MonoBehaviour
     {
         health -= value;
         if (health <= 0f)
-            Destroy(gameObject);
+            Death();
+    }
+
+    void Death()
+    {
+        if (expDropChance >= Random.Range(0f, 100f))
+            Instantiate(ExpOrbPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
