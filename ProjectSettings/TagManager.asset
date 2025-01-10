@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Base
   - Bullet
+  - Exp Orb
   layers:
   - Default
   - TransparentFX

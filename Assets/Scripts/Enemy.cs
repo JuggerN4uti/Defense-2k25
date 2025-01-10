@@ -12,6 +12,7 @@ public enum EnemyState
 public class Enemy : MonoBehaviour
 {
     public EnemyState CurrentState = EnemyState.Run;
+    TextPopUp TextPopUpScript;
 
     [Header("Movement")]
     public float movementSpeed;
@@ -27,7 +28,9 @@ public class Enemy : MonoBehaviour
     Base BaseScript;
 
     [Header("Drop")]
-    public GameObject ExpOrbPrefab;
+    public Rigidbody2D Body;
+    public Transform TextOrigin;
+    public GameObject ExpOrbPrefab, PopUpObject;
     public float expDropChance;
 
     void Start()
@@ -57,6 +60,15 @@ public class Enemy : MonoBehaviour
     void TakeDamage(float value)
     {
         health -= value;
+
+        TextOrigin.position = new Vector3(transform.position.x + Random.Range(-0.25f, 0.25f), transform.position.y + Random.Range(-0.25f, 0.25f), 0f);
+        TextOrigin.rotation = Quaternion.Euler(TextOrigin.rotation.x, TextOrigin.rotation.y, Body.rotation + Random.Range(-22f, 22f));
+        GameObject text = Instantiate(PopUpObject, TextOrigin.position, transform.rotation);
+        Rigidbody2D text_body = text.GetComponent<Rigidbody2D>();
+        TextPopUpScript = text.GetComponent(typeof(TextPopUp)) as TextPopUp;
+        TextPopUpScript.SetText(value, "white");
+        text_body.AddForce(TextOrigin.up * Random.Range(1.83f, 2.56f), ForceMode2D.Impulse);
+
         if (health <= 0f)
             Death();
     }
