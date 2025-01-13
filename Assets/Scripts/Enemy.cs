@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour
     public GameObject ExpOrbPrefab, PopUpObject;
     public float expDropChance;
 
+    [Header("Fence")]
+    public float fenceDamage;
+
     void Start()
     {
         health = maxHealth;
@@ -91,5 +94,19 @@ public class Enemy : MonoBehaviour
             BulletScript.Struck();
             //Destroy(other.gameObject);
         }
+        else if (other.transform.tag == "Fence")
+            EnterFence();
+    }
+
+    void EnterFence()
+    {
+        fenceDamage = BaseScript.fenceDamage;
+        Invoke("FenceTrigger", 0.2f);
+    }
+
+    void FenceTrigger()
+    {
+        TakeDamage(fenceDamage);
+        Invoke("FenceTrigger", 1f);
     }
 }

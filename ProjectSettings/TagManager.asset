@@ -7,6 +7,7 @@ TagManager:
   - Base
   - Bullet
   - Exp Orb
+  - Fence
   layers:
   - Default
   - TransparentFX
