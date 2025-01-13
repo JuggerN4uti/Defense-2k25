@@ -5,10 +5,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("Values")]
-    public float damage;
+    public int pierce;
+    public float damage, passDamage;
 
     public void Struck()
     {
-        Destroy(gameObject);
+        pierce--;
+        if (pierce <= 0)
+            Destroy(gameObject);
     }
 }

@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
 
     void EnterFence()
     {
-        fenceDamage = BaseScript.fenceDamage;
+        fenceDamage = BaseScript.FenceDamage();
         Invoke("FenceTrigger", 0.2f);
     }
 
