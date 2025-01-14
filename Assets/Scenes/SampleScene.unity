@@ -472,8 +472,8 @@ Transform:
   m_GameObject: {fileID: 452306361}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.464, y: -2, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalPosition: {x: 4.33, y: -2.5, z: 0}
+  m_LocalScale: {x: 1.236, y: 1.236, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1370401183}
@@ -628,7 +628,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -673,8 +673,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1588850792}
   PlayerScript: {fileID: 1588850794}
-  cameraDist: 5
-  smoothTime: 0.26
+  cameraDist: 7
+  smoothTime: 0.3
   zStart: -10
 --- !u!1 &525363467
 GameObject:
@@ -846,9 +846,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293436d3a01ad4d4e9030b97bfadb45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 3783616219226147607, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
+  EnemyPrefab:
+  - {fileID: 3783616219226147607, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
+  - {fileID: 6195448710641199921, guid: 57819db2e9d84eb4fb1b2afee2cf170e, type: 3}
   SpawnPoint: {fileID: 414499271}
   spawning: 0
+  frequency: 0
+  charge: 25
+  difficulty: 0
 --- !u!1 &965952321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,9 +1246,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraObject: {fileID: 519420031}
   SpawnerScript: {fileID: 865771349}
+  BaseScript: {fileID: 965952325}
   TextObject: {fileID: 2096092415}
   IconTransform: {fileID: 1056055381}
   day: 1
+  cyclesCount: 0
 --- !u!114 &1056055383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,8 +1516,8 @@ Transform:
   m_GameObject: {fileID: 1309679559}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1.236, y: 1.236, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1394719500}
@@ -2038,6 +2045,7 @@ MonoBehaviour:
   level: 0
   experience: 0
   expRequired: 0
+  totalExperience: 0
   MagazineInfo: {fileID: 1195988463}
 --- !u!212 &1588850795
 SpriteRenderer:
@@ -2475,8 +2483,8 @@ Transform:
   m_GameObject: {fileID: 1941819946}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.464, y: -2, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalPosition: {x: -4.33, y: -2.5, z: 0}
+  m_LocalScale: {x: 1.236, y: 1.236, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1050599533}

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     public int projectileCountIncrease;
     public float damageIncrease, fireRateIncrease, sizeIncrease, durationIncrease;
-    int tempi;
+    int tempi, roll;
 
     [Header("Aim")]
     public Rigidbody2D Rotation;
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     [Header("Level / Experience")]
     public int level;
-    public int experience, expRequired;
+    public int experience, expRequired, totalExperience;
 
     [Header("HUD")]
     public TMPro.TextMeshProUGUI MagazineInfo;
@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     {
         level = 1;
         expRequired = ExperienceRequiredCalculate();
+        GainXP(5); //39
         Reload();
     }
 
@@ -170,6 +171,7 @@ public class Player : MonoBehaviour
     void GainXP(int value)
     {
         experience += value;
+        totalExperience += value;
         if (experience >= expRequired)
         {
             experience -= expRequired;
@@ -182,7 +184,53 @@ public class Player : MonoBehaviour
         level++;
         expRequired = ExperienceRequiredCalculate();
         damage += 0.2f;
-        fireRate *= 0.98f;
+        if (level % 5 == 0)
+            projectileCountIncrease++;
+        else
+        {
+            roll = Random.Range(0, 4);
+            switch (roll)
+            {
+                case 0:
+                    GainDamage(0.024f);
+                    break;
+                case 1:
+                    GainRate(0.03f);
+                    break;
+                case 2:
+                    GainSize(0.036f);
+                    break;
+                case 3:
+                    GainDuration(0.036f);
+                    break;
+            }
+        }
+    }
+
+    void GainDamage(float value)
+    {
+        damageIncrease += value;
+    }
+
+    void GainRate(float value)
+    {
+        fireRateIncrease += value;
+    }
+
+    void GainSize(float value)
+    {
+        sizeIncrease += value;
+        if (BaseScript.Item[0] > 0)
+            BaseScript.SetFence();
+        if (BaseScript.Item[3] > 0)
+            BaseScript.SetOrbs();
+    }
+
+    void GainDuration(float value)
+    {
+        durationIncrease += value;
+        if (BaseScript.Item[3] > 0)
+            BaseScript.SetOrbs();
     }
 
     // Items

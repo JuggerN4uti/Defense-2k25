@@ -82,7 +82,12 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < expDropAmount; i++)
         {
             if (expDropChance >= Random.Range(0f, 100f))
-                Instantiate(ExpOrbPrefab, transform.position, transform.rotation);
+            {
+                TextOrigin.rotation = Quaternion.Euler(TextOrigin.rotation.x, TextOrigin.rotation.y, Body.rotation + Random.Range(-22f, 22f));
+                GameObject exp = Instantiate(ExpOrbPrefab, transform.position, TextOrigin.rotation);
+                Rigidbody2D exp_body = exp.GetComponent<Rigidbody2D>();
+                exp_body.AddForce(TextOrigin.up * Random.Range(2.09f, 3.02f), ForceMode2D.Impulse);
+            }
         }
         Destroy(gameObject);
     }

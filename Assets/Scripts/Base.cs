@@ -41,7 +41,7 @@ public class Base : MonoBehaviour
         HealthBarFill.fillAmount = hitPoints / maxHitPoints;
     }
 
-    void GetRandomItem()
+    public void GetRandomItem()
     {
         roll = Random.Range(0, Item.Length);
         CollectItem(roll);
@@ -74,17 +74,10 @@ public class Base : MonoBehaviour
         switch (itemID)
         {
             case 0:
-                size = (0.13f + Item[0] * 0.002f) * PlayerScript.SizeCalculation(0.6f);
-                FenceObject.transform.localScale = new Vector3(size, size, 1f);
+                SetFence();
                 break;
             case 3:
-                size = (1.18f + Item[3] * 0.02f) * PlayerScript.SizeCalculation();
-                for (int i = 0; i < 3; i++)
-                {
-                    OrbsObject[i].transform.localScale = new Vector3(size, size, 1f);
-                }
-                rotation = (0.288f + 0.012f * Item[3]) * PlayerScript.DurationCalculation(0.4f);
-                OrbsRotateScript.zAngle = -rotation;
+                SetOrbs();
                 break;
         }
     }
@@ -94,9 +87,15 @@ public class Base : MonoBehaviour
         return (5.5f + 1.8f * Item[0]) * PlayerScript.DamageCalculation(1.25f);
     }
 
+    public void SetFence()
+    {
+        size = (0.13f + Item[0] * 0.002f) * PlayerScript.SizeCalculation(0.6f);
+        FenceObject.transform.localScale = new Vector3(size, size, 1f);
+    }
+
     void Item01()
     {
-        tempi = 2 + (Item[1] + PlayerScript.projectileCountIncrease) / 3;
+        tempi = 2 + (1 + Item[1] + PlayerScript.projectileCountIncrease) / 3;
         waveAim = Random.Range(0f, 360f);
         for (int i = 0; i < tempi; i++)
         {
@@ -114,7 +113,7 @@ public class Base : MonoBehaviour
 
     public float Item1Damage()
     {
-        return (9.2f + 2.3f * Item[1]) * PlayerScript.DamageCalculation();
+        return (8.8f + 2.2f * Item[1]) * PlayerScript.DamageCalculation();
     }
 
     void Item02()
@@ -135,12 +134,23 @@ public class Base : MonoBehaviour
         return (6f + 1.6f * Item[3]) * PlayerScript.DamageCalculation();
     }
 
+    public void SetOrbs()
+    {
+        size = (1.21f + Item[3] * 0.026f) * PlayerScript.SizeCalculation(1.15f);
+        for (int i = 0; i < 3; i++)
+        {
+            OrbsObject[i].transform.localScale = new Vector3(size, size, 1f);
+        }
+        rotation = (0.288f + 0.012f * Item[3]) * PlayerScript.DurationCalculation(0.45f);
+        OrbsRotateScript.zAngle = -rotation;
+    }
+
     void Item04()
     {
         tempi = 3 + (2 + Item[4] * 4 + PlayerScript.projectileCountIncrease * 4) / 9;
         for (int i = 0; i < tempi; i++)
         {
-            Invoke("Item04Launch", i * 0.12f);
+            Invoke("Item04Launch", i * 0.13f);
         }
 
         Invoke("Item04", 2.6f / PlayerScript.FireRateCalculation());
@@ -154,7 +164,7 @@ public class Base : MonoBehaviour
         BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
         BulletScript.TargetedLocation = DistancePoint;
         BulletScript.damage = Item4Damage();
-        BulletScript.AreaSize = (0.46f + Item[4] * 0.04f) * PlayerScript.SizeCalculation();
+        BulletScript.AreaSize = (0.5f + Item[4] * 0.03f) * PlayerScript.SizeCalculation();
         BulletScript.AreaDuration = (1.37f + Item[4] * 0.086f) * PlayerScript.DurationCalculation();
     }
 
