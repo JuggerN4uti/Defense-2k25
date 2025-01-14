@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Vector2 move;
 
     [Header("Stats")]
+    public bool experienced;
     public int projectileCountIncrease;
     public float damageIncrease, fireRateIncrease, sizeIncrease, durationIncrease;
     int tempi, roll;
@@ -45,7 +46,8 @@ public class Player : MonoBehaviour
     {
         level = 1;
         expRequired = ExperienceRequiredCalculate();
-        GainXP(5); //39
+        if (experienced)
+            GainXP(13); //138
         Reload();
     }
 
@@ -184,6 +186,7 @@ public class Player : MonoBehaviour
         level++;
         expRequired = ExperienceRequiredCalculate();
         damage += 0.2f;
+        BaseScript.GainHP(5);
         if (level % 5 == 0)
             projectileCountIncrease++;
         else

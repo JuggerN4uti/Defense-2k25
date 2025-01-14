@@ -26,8 +26,9 @@ public class DayNightCycle : MonoBehaviour
         CameraObject.backgroundColor = new Color(0.243f, 0.243f, 0.251f);
         TextObject.SetActive(false);
         IconTransform.rotation = Quaternion.Euler(0f, 0f, 180f);
-        SpawnerScript.frequency = 14.75f / (0.8f + 1.3f * cyclesCount);
-        SpawnerScript.difficulty = cyclesCount + (cyclesCount * cyclesCount) / 7;
+        SpawnerScript.frequency = 15.2f / (0.8f + 1.3f * cyclesCount);
+        SpawnerScript.difficulty[0] = cyclesCount + (4 + cyclesCount) * cyclesCount / 8;
+        SpawnerScript.difficulty[1] = (5 + cyclesCount) * cyclesCount / 13;
         SpawnerScript.Activate();
 
         Invoke("StartDay", 50f);
@@ -40,7 +41,9 @@ public class DayNightCycle : MonoBehaviour
         TextObject.SetActive(true);
         IconTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-        BaseScript.GetRandomItem();
+        if (cyclesCount % 3 == 0)
+            BaseScript.GetKnownItem();
+        else BaseScript.GetRandomItem();
         SpawnerScript.Deactivate();
     }
 }

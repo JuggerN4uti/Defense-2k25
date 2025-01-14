@@ -41,9 +41,25 @@ public class Base : MonoBehaviour
         HealthBarFill.fillAmount = hitPoints / maxHitPoints;
     }
 
+    public void GainHP(int value)
+    {
+        maxHitPoints += value;
+        hitPoints += value;
+        HealthBarFill.fillAmount = hitPoints / maxHitPoints;
+    }
+
     public void GetRandomItem()
     {
         roll = Random.Range(0, Item.Length);
+        CollectItem(roll);
+    }
+
+    public void GetKnownItem()
+    {
+        do
+        {
+            roll = Random.Range(0, Item.Length);
+        } while (Item[roll] == 0);
         CollectItem(roll);
     }
 

@@ -113,7 +113,7 @@ MonoBehaviour:
   ExpOrbPrefab: {fileID: 8877411773470940838, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
   PopUpObject: {fileID: 3850148406300568487, guid: 9ff8225886eddb6498982de7fef4a97e, type: 3}
   expDropAmount: 2
-  expDropChance: 33
+  expDropChance: 35
   fenceDamage: 0
 --- !u!50 &6379453572560599292
 Rigidbody2D:

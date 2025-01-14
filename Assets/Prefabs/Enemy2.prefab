@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6280586719561223539, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
       propertyPath: maxHealth
-      value: 60
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 6280586719561223539, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
       propertyPath: attackSpeed
@@ -86,11 +86,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6280586719561223539, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
       propertyPath: expDropAmount
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6280586719561223539, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
       propertyPath: expDropChance
-      value: 35.2
+      value: 38.2
       objectReference: {fileID: 0}
     - target: {fileID: 6280586719561223539, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
       propertyPath: movementSpeed

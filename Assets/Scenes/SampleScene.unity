@@ -849,11 +849,12 @@ MonoBehaviour:
   EnemyPrefab:
   - {fileID: 3783616219226147607, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
   - {fileID: 6195448710641199921, guid: 57819db2e9d84eb4fb1b2afee2cf170e, type: 3}
+  - {fileID: 7392731280542765620, guid: d38e56b2f68f23b4ea81da50f19eb646, type: 3}
   SpawnPoint: {fileID: 414499271}
   spawning: 0
   frequency: 0
-  charge: 25
-  difficulty: 0
+  charge: 0000000000000000
+  difficulty: 0000000000000000
 --- !u!1 &965952321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2024,7 @@ MonoBehaviour:
   movementSpeed: 4.2
   MoveTowards: {fileID: 647957379}
   move: {x: 0, y: 0}
+  experienced: 0
   projectileCountIncrease: 0
   damageIncrease: 0
   fireRateIncrease: 0
@@ -2035,9 +2037,9 @@ MonoBehaviour:
   Barrel: {fileID: 1887240590}
   ItemBarrel: {fileID: 252962838}
   task: 0
-  fireRate: 0.6
+  fireRate: 0.574
   damage: 5
-  inaccuracy: 6.9
+  inaccuracy: 6.6
   force: 18.8
   reloadTime: 2.1
   bullets: 0
