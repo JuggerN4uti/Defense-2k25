@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attract : MonoBehaviour
 {
     GameObject Player;
-    public float attractionSpeed;
+    public float attractionSpeed, attractionAcceleration;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,6 @@ public class Attract : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, attractionSpeed * Time.deltaTime);
-        attractionSpeed += 0.5f * Time.deltaTime;
+        attractionSpeed += attractionAcceleration * Time.deltaTime;
     }
 }

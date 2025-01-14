@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D Body;
     public Transform TextOrigin;
     public GameObject ExpOrbPrefab, PopUpObject;
+    public int expDropAmount;
     public float expDropChance;
 
     [Header("Fence")]
@@ -78,8 +79,11 @@ public class Enemy : MonoBehaviour
 
     void Death()
     {
-        if (expDropChance >= Random.Range(0f, 100f))
-            Instantiate(ExpOrbPrefab, transform.position, transform.rotation);
+        for (int i = 0; i < expDropAmount; i++)
+        {
+            if (expDropChance >= Random.Range(0f, 100f))
+                Instantiate(ExpOrbPrefab, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 
@@ -96,6 +100,8 @@ public class Enemy : MonoBehaviour
         }
         else if (other.transform.tag == "Fence")
             EnterFence();
+        else if (other.transform.tag == "Orb")
+            TakeDamage(BaseScript.OrbDamage());
     }
 
     void EnterFence()

@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Exp Orb
   - Fence
+  - Orb
   layers:
   - Default
   - TransparentFX

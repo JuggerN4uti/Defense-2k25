@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Base BaseScript;
+
     [Header("Movement")]
     public Rigidbody2D Body;
     public float movementSpeed;
     public Transform MoveTowards;
     public Vector2 move;
+
+    [Header("Stats")]
+    public int projectileCountIncrease;
+    public float damageIncrease, fireRateIncrease, sizeIncrease, durationIncrease;
+    int tempi;
 
     [Header("Aim")]
     public Rigidbody2D Rotation;
@@ -17,7 +24,8 @@ public class Player : MonoBehaviour
 
     [Header("Shoot")]
     public GameObject BulletPrefab;
-    public Transform Barrel;
+    public GameObject Item2BulletPrefab;
+    public Transform Barrel, ItemBarrel;
     public float task;
 
     [Header("Gun Stats")]
@@ -51,7 +59,7 @@ public class Player : MonoBehaviour
         Aim();
 
         if (task > 0f)
-            task -= Time.deltaTime;
+            task -= Time.deltaTime * FireRateCalculation(2f);
         else
         {
             if (Input.GetMouseButton(0))
@@ -113,7 +121,12 @@ public class Player : MonoBehaviour
             task += fireRate;
             bullets--;
             MagazineInfo.text = bullets.ToString() + "/" + magazineSize.ToString();
-            Fire();
+
+            tempi = 1 + projectileCountIncrease / 3;
+            for (int i = 0; i < tempi; i++)
+            {
+                Invoke("Fire", i * 0.075f);
+            }
         }
         else
         {
@@ -128,7 +141,7 @@ public class Player : MonoBehaviour
         GameObject bullet = Instantiate(BulletPrefab, Barrel.position, Barrel.rotation);
         Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
         BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
-        BulletScript.damage = damage;
+        BulletScript.damage = damage * DamageCalculation(2f);
         //SetBullet(1f);
         bullet_body.AddForce(Barrel.up * force, ForceMode2D.Impulse);
     }
@@ -172,9 +185,44 @@ public class Player : MonoBehaviour
         fireRate *= 0.98f;
     }
 
+    // Items
+    public void Item02()
+    {
+        tempi = 4 + (BaseScript.Item[2] * 3 + projectileCountIncrease * 6) / 7;
+        for (int i = 0; i < tempi; i++)
+        {
+            ItemBarrel.rotation = Quaternion.Euler(ItemBarrel.rotation.x, ItemBarrel.rotation.y, Rotation.rotation - (tempi - 1) * 5f + i * 10f);
+            GameObject bullet = Instantiate(Item2BulletPrefab, ItemBarrel.position, ItemBarrel.rotation);
+            Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
+            BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
+            BulletScript.damage = BaseScript.Item2Damage() * DamageCalculation();
+            bullet_body.AddForce(ItemBarrel.up * 16.8f, ForceMode2D.Impulse);
+        }
+    }
+
     // Checks
     int ExperienceRequiredCalculate()
     {
         return 10 + level * 5 + level * level;
+    }
+
+    public float DamageCalculation(float efficiency = 1f)
+    {
+        return 1f + damageIncrease * efficiency;
+    }
+
+    public float FireRateCalculation(float efficiency = 1f)
+    {
+        return 1f + fireRateIncrease * efficiency;
+    }
+
+    public float SizeCalculation(float efficiency = 1f)
+    {
+        return 1f + sizeIncrease * efficiency;
+    }
+
+    public float DurationCalculation(float efficiency = 1f)
+    {
+        return 1f + durationIncrease * efficiency;
     }
 }
