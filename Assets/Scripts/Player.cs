@@ -41,13 +41,15 @@ public class Player : MonoBehaviour
 
     [Header("HUD")]
     public TMPro.TextMeshProUGUI MagazineInfo;
+    public GameObject TabHUD;
+    public TMPro.TextMeshProUGUI[] ItemsCollectedInfo;
 
     void Start()
     {
         level = 1;
         expRequired = ExperienceRequiredCalculate();
         if (experienced)
-            GainXP(18); //61
+            GainXP(22); //6
         Reload();
     }
 
@@ -73,6 +75,10 @@ public class Player : MonoBehaviour
                 Invoke("Reload", reloadTime - 0.05f);
             }
         }
+        if (Input.GetKeyDown(KeyCode.Tab))
+            TabMenu(true);
+        if (Input.GetKeyUp(KeyCode.Tab))
+            TabMenu(false);
         /*if (move[0] != 0)
         {
             if (momentum[0] > -1f && momentum[0] < 1f)
@@ -234,6 +240,18 @@ public class Player : MonoBehaviour
         durationIncrease += value;
         if (BaseScript.Item[3] > 0)
             BaseScript.SetOrbs();
+    }
+
+    void TabMenu(bool open)
+    {
+        TabHUD.SetActive(open);
+        if (open)
+        {
+            for (int i = 0; i < BaseScript.Item.Length; i++)
+            {
+                ItemsCollectedInfo[i].text = BaseScript.Item[i].ToString();
+            }
+        }
     }
 
     // Items

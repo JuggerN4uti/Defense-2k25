@@ -229,12 +229,12 @@ public class Base : MonoBehaviour
         BulletScript.passDamage = 1f - (0.8f / (PlayerScript.projectileCountIncrease + 2));
         bullet_body.AddForce(RotatingBarrel.up * 16.6f, ForceMode2D.Impulse);
 
-        temp = 0.472f / (1f + 0.12f * Item[6] + 0.18f * PlayerScript.projectileCountIncrease);
+        temp = 0.445f / (1f + 0.12f * Item[6] + 0.18f * PlayerScript.projectileCountIncrease);
         Invoke("Item06", temp / PlayerScript.FireRateCalculation(1.04f));
     }
 
     public float Item6Damage()
     {
-        return 7.2f + 2.5f * Item[6];
+        return (7.4f + 2.6f * Item[6]) * PlayerScript.DamageCalculation();
     }
 }
