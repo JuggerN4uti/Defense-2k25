@@ -17,7 +17,7 @@ public class Base : MonoBehaviour
 
     [Header("Aim")]
     public Transform Rotation;
-    public Transform Barrel, DistancePoint, DistanceRotation;
+    public Transform Barrel, DistancePoint, DistanceRotation, RotatingBarrel;
 
     [Header("Items")]
     public int[] Item;
@@ -26,7 +26,7 @@ public class Base : MonoBehaviour
 
     [Header("Objects")]
     public GameObject FenceObject;
-    public GameObject WaveBullet, OrbsOrbitObject, GrenadeObject, MineObject;
+    public GameObject WaveBullet, OrbsOrbitObject, GrenadeObject, MineObject, OrbProjectileObject;
     public GameObject[] OrbsObject;
 
     void Update()
@@ -89,6 +89,9 @@ public class Base : MonoBehaviour
                     break;
                 case 5:
                     Invoke("Item05", 0.2f);
+                    break;
+                case 6:
+                    Invoke("Item06", 0.2f);
                     break;
             }
         }
@@ -187,8 +190,8 @@ public class Base : MonoBehaviour
         BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
         BulletScript.TargetedLocation = DistancePoint;
         BulletScript.damage = Item4Damage();
-        BulletScript.AreaSize = (0.52f + Item[4] * 0.033f) * PlayerScript.SizeCalculation();
-        BulletScript.AreaDuration = (1.5f + Item[4] * 0.083f) * PlayerScript.DurationCalculation();
+        BulletScript.AreaSize = (0.541f + Item[4] * 0.035f) * PlayerScript.SizeCalculation();
+        BulletScript.AreaDuration = (1.54f + Item[4] * 0.089f) * PlayerScript.DurationCalculation();
     }
 
     public float Item4Damage()
@@ -204,15 +207,34 @@ public class Base : MonoBehaviour
         BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
         BulletScript.TargetedLocation = DistancePoint;
         BulletScript.damage = Item5Damage();
-        BulletScript.AreaSize = (0.32f + Item[5] * 0.032f) * PlayerScript.SizeCalculation();
-        BulletScript.AreaDuration = (6.03f + Item[5] * 0.206f) * PlayerScript.DurationCalculation();
+        BulletScript.AreaSize = (0.331f + Item[5] * 0.034f) * PlayerScript.SizeCalculation();
+        BulletScript.AreaDuration = (6.41f + Item[5] * 0.227f) * PlayerScript.DurationCalculation();
 
-        temp = 1.82f / (1f + 0.04f * Item[5]);
+        temp = 1.73f / (1f + 0.04f * Item[5]);
         Invoke("Item05", temp / PlayerScript.FireRateCalculation(1.12f));
     }
 
     public float Item5Damage()
     {
         return (9.9f + 2.66f * Item[5]) * PlayerScript.DamageCalculation();
+    }
+
+    void Item06()
+    {
+        GameObject bullet = Instantiate(OrbProjectileObject, RotatingBarrel.position, RotatingBarrel.rotation);
+        BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
+        Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
+        BulletScript.damage = Item6Damage();
+        BulletScript.pierce = 1 + (Item[6] * 3 + PlayerScript.projectileCountIncrease * 4) / 11;
+        BulletScript.passDamage = 1f - (0.8f / (PlayerScript.projectileCountIncrease + 2));
+        bullet_body.AddForce(RotatingBarrel.up * 16.6f, ForceMode2D.Impulse);
+
+        temp = 0.472f / (1f + 0.12f * Item[6] + 0.18f * PlayerScript.projectileCountIncrease);
+        Invoke("Item06", temp / PlayerScript.FireRateCalculation(1.04f));
+    }
+
+    public float Item6Damage()
+    {
+        return 7.2f + 2.5f * Item[6];
     }
 }
