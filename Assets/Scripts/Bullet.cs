@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
     public bool DurationBased;
     //public FallingObject fall;
     float travelX, travelY;
+    public bool defuse;
 
     void Start()
     {
@@ -62,7 +63,8 @@ public class Bullet : MonoBehaviour
 
     void End()
     {
-        AoE();
+        if (!defuse)
+            AoE();
         Destroy(gameObject);
     }
 }

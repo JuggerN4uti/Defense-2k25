@@ -26,13 +26,15 @@ public class Base : MonoBehaviour
 
     [Header("Objects")]
     public GameObject FenceObject;
-    public GameObject WaveBullet, OrbsOrbitObject, GrenadeObject;
+    public GameObject WaveBullet, OrbsOrbitObject, GrenadeObject, MineObject;
     public GameObject[] OrbsObject;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
             GetRandomItem();
+        if (Input.GetKeyDown(KeyCode.X))
+            CollectItem(Item.Length - 1);
     }
 
     public void TakeDamage(float value)
@@ -84,6 +86,9 @@ public class Base : MonoBehaviour
                     break;
                 case 4:
                     Invoke("Item04", 0.2f);
+                    break;
+                case 5:
+                    Invoke("Item05", 0.2f);
                     break;
             }
         }
@@ -152,24 +157,26 @@ public class Base : MonoBehaviour
 
     public void SetOrbs()
     {
-        size = (1.21f + Item[3] * 0.026f) * PlayerScript.SizeCalculation(1.15f);
+        size = (1.21f + Item[3] * 0.026f) * PlayerScript.SizeCalculation();
         for (int i = 0; i < 3; i++)
         {
             OrbsObject[i].transform.localScale = new Vector3(size, size, 1f);
         }
-        rotation = (0.288f + 0.012f * Item[3]) * PlayerScript.DurationCalculation(0.45f);
+        size = 1f * PlayerScript.SizeCalculation(0.1f);
+        OrbsOrbitObject.transform.localScale = new Vector3(size, size, 1f);
+        rotation = (0.29f + 0.014f * Item[3]) * PlayerScript.DurationCalculation(0.55f);
         OrbsRotateScript.zAngle = -rotation;
     }
 
     void Item04()
     {
-        tempi = 3 + (2 + Item[4] * 4 + PlayerScript.projectileCountIncrease * 4) / 9;
+        tempi = 3 + (3 + Item[4] * 4 + PlayerScript.projectileCountIncrease * 5) / 10;
         for (int i = 0; i < tempi; i++)
         {
             Invoke("Item04Launch", i * 0.13f);
         }
 
-        Invoke("Item04", 2.6f / PlayerScript.FireRateCalculation());
+        Invoke("Item04", 2.75f / PlayerScript.FireRateCalculation());
     }
 
     void Item04Launch()
@@ -180,12 +187,32 @@ public class Base : MonoBehaviour
         BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
         BulletScript.TargetedLocation = DistancePoint;
         BulletScript.damage = Item4Damage();
-        BulletScript.AreaSize = (0.5f + Item[4] * 0.03f) * PlayerScript.SizeCalculation();
-        BulletScript.AreaDuration = (1.37f + Item[4] * 0.086f) * PlayerScript.DurationCalculation();
+        BulletScript.AreaSize = (0.52f + Item[4] * 0.033f) * PlayerScript.SizeCalculation();
+        BulletScript.AreaDuration = (1.5f + Item[4] * 0.083f) * PlayerScript.DurationCalculation();
     }
 
     public float Item4Damage()
     {
-        return (6.2f + 2f * Item[4]) * PlayerScript.DamageCalculation();
+        return (6.7f + 2.01f * Item[4]) * PlayerScript.DamageCalculation();
+    }
+
+    void Item05()
+    {
+        DistancePoint.position = new Vector2(0f + DistanceRotation.position.x, Random.Range(8.8f, 12.4f * PlayerScript.FireRateCalculation(0.3f)) + DistanceRotation.position.y);
+        DistanceRotation.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+        GameObject bullet = Instantiate(MineObject, transform.position, transform.rotation);
+        BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
+        BulletScript.TargetedLocation = DistancePoint;
+        BulletScript.damage = Item5Damage();
+        BulletScript.AreaSize = (0.32f + Item[5] * 0.032f) * PlayerScript.SizeCalculation();
+        BulletScript.AreaDuration = (6.03f + Item[5] * 0.206f) * PlayerScript.DurationCalculation();
+
+        temp = 1.82f / (1f + 0.04f * Item[5]);
+        Invoke("Item05", temp / PlayerScript.FireRateCalculation(1.12f));
+    }
+
+    public float Item5Damage()
+    {
+        return (9.9f + 2.66f * Item[5]) * PlayerScript.DamageCalculation();
     }
 }

@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1297165306444689291
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 697695669974957765, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_Color.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 697695669974957765, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 697695669974957765, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_Color.g
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 697695669974957765, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743693283740783472, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_Name
+      value: Mine Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727173630646500411, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: duration
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1743693283740783472, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3543833760883733326}
+  m_SourcePrefab: {fileID: 100100000, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+--- !u!1 &734829135884598523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1743693283740783472, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+  m_PrefabInstance: {fileID: 1297165306444689291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3543833760883733326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734829135884598523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2132eded013ba44a094b08b168a30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1994745517765546318}
+  duration: 0.066
+  startingFade: 0.784
+  red: 0.941
+  green: 0.471
+  blue: 0.941
+--- !u!212 &1994745517765546318 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 697695669974957765, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
+  m_PrefabInstance: {fileID: 1297165306444689291}
+  m_PrefabAsset: {fileID: 0}

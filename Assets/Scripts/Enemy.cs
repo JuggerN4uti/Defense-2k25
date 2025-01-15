@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum EnemyState
 {
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Health")]
     public float maxHealth, health;
+    public Image HealthBarFill;
     Bullet BulletScript;
 
     [Header("Attack")]
@@ -64,6 +66,7 @@ public class Enemy : MonoBehaviour
     void TakeDamage(float value)
     {
         health -= value;
+        HealthBarFill.fillAmount = health / maxHealth;
 
         TextOrigin.position = new Vector3(transform.position.x + Random.Range(-0.25f, 0.25f), transform.position.y + Random.Range(-0.25f, 0.25f), 0f);
         TextOrigin.rotation = Quaternion.Euler(TextOrigin.rotation.x, TextOrigin.rotation.y, Body.rotation + Random.Range(-22f, 22f));

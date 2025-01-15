@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         level = 1;
         expRequired = ExperienceRequiredCalculate();
         if (experienced)
-            GainXP(13); //138
+            GainXP(17); //147
         Reload();
     }
 
