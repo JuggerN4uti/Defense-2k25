@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Scripts")]
     public Base BaseScript;
+    public LevelChoice LevelChoiceScript;
 
     [Header("Movement")]
     public Rigidbody2D Body;
@@ -37,7 +40,9 @@ public class Player : MonoBehaviour
 
     [Header("Level / Experience")]
     public int level;
-    public int experience, expRequired, totalExperience;
+    public float experience, expRequired, totalExperience;
+    public Image experienceBarFill;
+    public TMPro.TextMeshProUGUI LevelText;
 
     [Header("HUD")]
     public TMPro.TextMeshProUGUI MagazineInfo;
@@ -49,7 +54,7 @@ public class Player : MonoBehaviour
         level = 1;
         expRequired = ExperienceRequiredCalculate();
         if (experienced)
-            GainXP(22); //6
+            GainXP(21); //66 +5%
         Reload();
     }
 
@@ -176,8 +181,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    void GainXP(int value)
+    public void GainXP(float value)
     {
+        if (experienced)
+            value *= 1.05f;
         experience += value;
         totalExperience += value;
         if (experience >= expRequired)
@@ -185,48 +192,28 @@ public class Player : MonoBehaviour
             experience -= expRequired;
             LevelUp();
         }
+        experienceBarFill.fillAmount = experience / totalExperience;
     }
 
     void LevelUp()
     {
         level++;
+        LevelText.text = level.ToString();
         expRequired = ExperienceRequiredCalculate();
-        damage += 0.2f;
-        BaseScript.GainHP(5);
-        if (level % 5 == 0)
-            projectileCountIncrease++;
-        else
-        {
-            roll = Random.Range(0, 4);
-            switch (roll)
-            {
-                case 0:
-                    GainDamage(0.024f);
-                    break;
-                case 1:
-                    GainRate(0.03f);
-                    break;
-                case 2:
-                    GainSize(0.036f);
-                    break;
-                case 3:
-                    GainDuration(0.036f);
-                    break;
-            }
-        }
+        LevelChoiceScript.SetChoices();
     }
 
-    void GainDamage(float value)
+    public void GainDamage(float value)
     {
         damageIncrease += value;
     }
 
-    void GainRate(float value)
+    public void GainRate(float value)
     {
         fireRateIncrease += value;
     }
 
-    void GainSize(float value)
+    public void GainSize(float value)
     {
         sizeIncrease += value;
         if (BaseScript.Item[0] > 0)
@@ -235,7 +222,7 @@ public class Player : MonoBehaviour
             BaseScript.SetOrbs();
     }
 
-    void GainDuration(float value)
+    public void GainDuration(float value)
     {
         durationIncrease += value;
         if (BaseScript.Item[3] > 0)
@@ -270,9 +257,9 @@ public class Player : MonoBehaviour
     }
 
     // Checks
-    int ExperienceRequiredCalculate()
+    float ExperienceRequiredCalculate()
     {
-        return 10 + level * 5 + level * level;
+        return 10f + level * 5f + level * level;
     }
 
     public float DamageCalculation(float efficiency = 1f)

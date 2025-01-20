@@ -174,9 +174,10 @@ MonoBehaviour:
   pierce: 1
   damage: 0
   passDamage: 1
-  duration: 2
+  duration: 1.6
   TargetedLocation: {fileID: 0}
   ExplosionAreaObject: {fileID: 0}
   AreaSize: 0
   AreaDuration: 0
   DurationBased: 0
+  defuse: 0

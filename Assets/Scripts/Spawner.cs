@@ -35,7 +35,13 @@ public class Spawner : MonoBehaviour
             if (charge[1] >= 75)
             {
                 charge[1] -= 75;
-                Instantiate(EnemyPrefab[2], SpawnPoint.position, SpawnPoint.rotation);
+                charge[2] += difficulty[2];
+                if (charge[2] >= 75)
+                {
+                    charge[2] -= 75;
+                    Instantiate(EnemyPrefab[3], SpawnPoint.position, SpawnPoint.rotation);
+                }
+                else Instantiate(EnemyPrefab[2], SpawnPoint.position, SpawnPoint.rotation);
             }
             else Instantiate(EnemyPrefab[1], SpawnPoint.position, SpawnPoint.rotation);
         }

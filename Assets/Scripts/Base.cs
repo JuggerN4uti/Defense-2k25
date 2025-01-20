@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
+    [Header("Scripts")]
     public Player PlayerScript;
     Bullet BulletScript;
 
+    [Header("Stats")]
     public float maxHitPoints;
-    public float hitPoints;
+    public float hitPoints, regeneration;
     int roll, tempi;
     float temp, size, rotation;
 
@@ -26,11 +28,26 @@ public class Base : MonoBehaviour
 
     [Header("Objects")]
     public GameObject FenceObject;
-    public GameObject WaveBullet, OrbsOrbitObject, GrenadeObject, MineObject, OrbProjectileObject;
+    public GameObject WaveBullet, OrbsOrbitObject, GrenadeObject, MineObject, OrbProjectileObject, ShockwaveObject;
     public GameObject[] OrbsObject;
+
+    [Header("Shockwave")]
+    public bool shockwaving;
+    public float shockwaveTimer;
+
+    void Start()
+    {
+        Invoke("Regen", 5f / regeneration);
+    }
 
     void Update()
     {
+        if (shockwaving)
+        {
+            shockwaveTimer -= Time.deltaTime;
+            if (shockwaveTimer <= 0f)
+                Shockwave();
+        }
         if (Input.GetKeyDown(KeyCode.Z))
             GetRandomItem();
         if (Input.GetKeyDown(KeyCode.X))
@@ -41,6 +58,17 @@ public class Base : MonoBehaviour
     {
         hitPoints -= value;
         HealthBarFill.fillAmount = hitPoints / maxHitPoints;
+
+        if (shockwaving)
+            shockwaveTimer -= 0.05f + value * 0.15f;
+    }
+
+    void RestoreHealth(float value)
+    {
+        hitPoints += value;
+        if (hitPoints > maxHitPoints)
+            hitPoints = maxHitPoints;
+        HealthBarFill.fillAmount = hitPoints / maxHitPoints;
     }
 
     public void GainHP(int value)
@@ -48,6 +76,17 @@ public class Base : MonoBehaviour
         maxHitPoints += value;
         hitPoints += value;
         HealthBarFill.fillAmount = hitPoints / maxHitPoints;
+    }
+
+    public void GainRegen(int value)
+    {
+        regeneration += value;
+    }
+
+    void Regen()
+    {
+        RestoreHealth(1);
+        Invoke("Regen", 5f / regeneration);
     }
 
     public void GetRandomItem()
@@ -92,6 +131,9 @@ public class Base : MonoBehaviour
                     break;
                 case 6:
                     Invoke("Item06", 0.2f);
+                    break;
+                case 7:
+                    shockwaving = true;
                     break;
             }
         }
@@ -210,7 +252,7 @@ public class Base : MonoBehaviour
         BulletScript.AreaSize = (0.331f + Item[5] * 0.034f) * PlayerScript.SizeCalculation();
         BulletScript.AreaDuration = (6.41f + Item[5] * 0.227f) * PlayerScript.DurationCalculation();
 
-        temp = 1.73f / (1f + 0.04f * Item[5]);
+        temp = 1.68f / (1f + 0.04f * Item[5]);
         Invoke("Item05", temp / PlayerScript.FireRateCalculation(1.12f));
     }
 
@@ -229,12 +271,29 @@ public class Base : MonoBehaviour
         BulletScript.passDamage = 1f - (0.8f / (PlayerScript.projectileCountIncrease + 2));
         bullet_body.AddForce(RotatingBarrel.up * 16.6f, ForceMode2D.Impulse);
 
-        temp = 0.445f / (1f + 0.12f * Item[6] + 0.18f * PlayerScript.projectileCountIncrease);
+        temp = 0.432f / (1f + 0.12f * Item[6] + 0.18f * PlayerScript.projectileCountIncrease);
         Invoke("Item06", temp / PlayerScript.FireRateCalculation(1.04f));
     }
 
     public float Item6Damage()
     {
         return (7.4f + 2.6f * Item[6]) * PlayerScript.DamageCalculation();
+    }
+
+    void Shockwave()
+    {
+        GameObject bullet = Instantiate(ShockwaveObject, transform.position, transform.rotation);
+        BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
+        BulletScript.damage = ShockwaveDamage();
+        BulletScript.passDamage = 1f - (0.4f / (Item[7] + 1));
+        BulletScript.duration = (0.91f + Item[7] * 0.026f) * PlayerScript.DurationCalculation();
+
+        temp = 5.2f / (1f + 0.04f * Item[7]);
+        shockwaveTimer += temp / PlayerScript.FireRateCalculation(0.7f);
+    }
+
+    public float ShockwaveDamage()
+    {
+        return (12f + 3.5f * Item[7]) * PlayerScript.DamageCalculation(1.2f);
     }
 }
