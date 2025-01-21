@@ -7,6 +7,7 @@ public class Base : MonoBehaviour
 {
     [Header("Scripts")]
     public Player PlayerScript;
+    public ItemLibrary ILib;
     Bullet BulletScript;
 
     [Header("Stats")]
@@ -104,7 +105,7 @@ public class Base : MonoBehaviour
         CollectItem(roll);
     }
 
-    void CollectItem(int itemID)
+    public void CollectItem(int itemID)
     {
         Item[itemID]++;
         if (Item[itemID] == 1)
@@ -161,7 +162,7 @@ public class Base : MonoBehaviour
 
     void Item01()
     {
-        tempi = 2 + (1 + Item[1] + PlayerScript.projectileCountIncrease) / 3;
+        tempi = 2 + (3 + 3 * Item[1] + 4 * PlayerScript.projectileCountIncrease) / 9;
         waveAim = Random.Range(0f, 360f);
         for (int i = 0; i < tempi; i++)
         {
@@ -215,7 +216,7 @@ public class Base : MonoBehaviour
 
     void Item04()
     {
-        tempi = 3 + (3 + Item[4] * 4 + PlayerScript.projectileCountIncrease * 5) / 10;
+        tempi = 3 + (3 + Item[4] * 4 + PlayerScript.projectileCountIncrease * 6) / 10;
         for (int i = 0; i < tempi; i++)
         {
             Invoke("Item04Launch", i * 0.13f);
@@ -233,12 +234,12 @@ public class Base : MonoBehaviour
         BulletScript.TargetedLocation = DistancePoint;
         BulletScript.damage = Item4Damage();
         BulletScript.AreaSize = (0.541f + Item[4] * 0.035f) * PlayerScript.SizeCalculation();
-        BulletScript.AreaDuration = (1.54f + Item[4] * 0.089f) * PlayerScript.DurationCalculation();
+        BulletScript.AreaDuration = (1.59f + Item[4] * 0.09f) * PlayerScript.DurationCalculation();
     }
 
     public float Item4Damage()
     {
-        return (6.7f + 2.01f * Item[4]) * PlayerScript.DamageCalculation();
+        return (6.9f + 2.04f * Item[4]) * PlayerScript.DamageCalculation();
     }
 
     void Item05()
@@ -250,9 +251,9 @@ public class Base : MonoBehaviour
         BulletScript.TargetedLocation = DistancePoint;
         BulletScript.damage = Item5Damage();
         BulletScript.AreaSize = (0.331f + Item[5] * 0.034f) * PlayerScript.SizeCalculation();
-        BulletScript.AreaDuration = (6.41f + Item[5] * 0.227f) * PlayerScript.DurationCalculation();
+        BulletScript.AreaDuration = (6.77f + Item[5] * 0.224f) * PlayerScript.DurationCalculation();
 
-        temp = 1.68f / (1f + 0.04f * Item[5]);
+        temp = 1.63f / (1f + 0.04f * Item[5]);
         Invoke("Item05", temp / PlayerScript.FireRateCalculation(1.12f));
     }
 
@@ -267,11 +268,11 @@ public class Base : MonoBehaviour
         BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
         Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
         BulletScript.damage = Item6Damage();
-        BulletScript.pierce = 1 + (Item[6] * 3 + PlayerScript.projectileCountIncrease * 4) / 11;
+        BulletScript.pierce = 1 + (Item[6] * 3 + PlayerScript.projectileCountIncrease * 5) / 11;
         BulletScript.passDamage = 1f - (0.8f / (PlayerScript.projectileCountIncrease + 2));
         bullet_body.AddForce(RotatingBarrel.up * 16.6f, ForceMode2D.Impulse);
 
-        temp = 0.432f / (1f + 0.12f * Item[6] + 0.18f * PlayerScript.projectileCountIncrease);
+        temp = 0.432f / (1f + 0.12f * Item[6] + 0.22f * PlayerScript.projectileCountIncrease);
         Invoke("Item06", temp / PlayerScript.FireRateCalculation(1.04f));
     }
 

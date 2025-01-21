@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
 
     [Header("Gun Stats")]
     public float fireRate;
-    public float damage, inaccuracy, force, reloadTime;
-    public int bullets, magazineSize;
+    public float damage, damageRatio, inaccuracy, force, reloadTime;
+    public int pierce, bullets, magazineSize, dmgPerMag;
     Bullet BulletScript;
 
     [Header("Level / Experience")]
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         level = 1;
         expRequired = ExperienceRequiredCalculate();
         if (experienced)
-            GainXP(21); //66 +5%
+            GainXP(28); //166 +6%
         Reload();
     }
 
@@ -155,7 +155,8 @@ public class Player : MonoBehaviour
         GameObject bullet = Instantiate(BulletPrefab, Barrel.position, Barrel.rotation);
         Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
         BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
-        BulletScript.damage = damage * DamageCalculation(2f);
+        BulletScript.damage = damage * damageRatio * DamageCalculation(2f);
+        BulletScript.pierce = pierce;
         //SetBullet(1f);
         bullet_body.AddForce(Barrel.up * force, ForceMode2D.Impulse);
     }
@@ -184,7 +185,7 @@ public class Player : MonoBehaviour
     public void GainXP(float value)
     {
         if (experienced)
-            value *= 1.05f;
+            value *= 1.06f;
         experience += value;
         totalExperience += value;
         if (experience >= expRequired)
@@ -229,6 +230,15 @@ public class Player : MonoBehaviour
             BaseScript.SetOrbs();
     }
 
+    public void GainMagazineSize(int amount)
+    {
+        magazineSize += amount;
+        bullets += amount;
+        if (dmgPerMag > 0)
+            damage += dmgPerMag * 0.05f * amount;
+        MagazineInfo.text = bullets.ToString() + "/" + magazineSize.ToString();
+    }
+
     void TabMenu(bool open)
     {
         TabHUD.SetActive(open);
@@ -244,7 +254,7 @@ public class Player : MonoBehaviour
     // Items
     public void Item02()
     {
-        tempi = 4 + (BaseScript.Item[2] * 3 + projectileCountIncrease * 6) / 7;
+        tempi = 4 + projectileCountIncrease + (BaseScript.Item[2] * 3) / 7;
         for (int i = 0; i < tempi; i++)
         {
             ItemBarrel.rotation = Quaternion.Euler(ItemBarrel.rotation.x, ItemBarrel.rotation.y, Rotation.rotation - (tempi - 1) * 5f + i * 10f);

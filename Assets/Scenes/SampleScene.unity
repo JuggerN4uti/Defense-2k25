@@ -842,6 +842,74 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &294615357
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384768397267098469, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4686121815519531980, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+      propertyPath: m_Name
+      value: Item Library
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+--- !u!114 &294615358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4456172986558655421, guid: 0d1f5ef2ea87ca0419b4fd556f50be5e, type: 3}
+  m_PrefabInstance: {fileID: 294615357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d529fd6e488604fb15e1ba71a9cbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &297210175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2127,6 +2195,7 @@ MonoBehaviour:
   - {fileID: 3783616219226147607, guid: 1c169c761753f8547a284607f5b26b2c, type: 3}
   - {fileID: 6195448710641199921, guid: 57819db2e9d84eb4fb1b2afee2cf170e, type: 3}
   - {fileID: 7392731280542765620, guid: d38e56b2f68f23b4ea81da50f19eb646, type: 3}
+  - {fileID: 3347995792136092398, guid: 00cce3506eb39cc47a78db251ff71941, type: 3}
   SpawnPoint: {fileID: 414499271}
   spawning: 0
   frequency: 0
@@ -2407,6 +2476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerScript: {fileID: 1588850794}
+  ILib: {fileID: 294615358}
   maxHitPoints: 50
   hitPoints: 50
   regeneration: 1
@@ -4235,63 +4305,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1108785491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1522282737
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.115052
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.246526
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577788511219665085, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8877411773470940838, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
-      propertyPath: m_Name
-      value: Exp Orb
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 70580dce014bfa14c8a3a7864d070b97, type: 3}
 --- !u!1 &1584876669
 GameObject:
   m_ObjectHideFlags: 0
@@ -4626,7 +4639,7 @@ MonoBehaviour:
   movementSpeed: 4.2
   MoveTowards: {fileID: 647957379}
   move: {x: 0, y: 0}
-  experienced: 0
+  experienced: 1
   projectileCountIncrease: 0
   damageIncrease: 0
   fireRateIncrease: 0
@@ -4641,11 +4654,14 @@ MonoBehaviour:
   task: 0
   fireRate: 0.574
   damage: 5
+  damageRatio: 1
   inaccuracy: 6.6
   force: 18.8
   reloadTime: 2.1
+  pierce: 1
   bullets: 0
   magazineSize: 12
+  dmgPerMag: 0
   level: 0
   experience: 0
   expRequired: 0
@@ -4781,12 +4797,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerScript: {fileID: 1588850794}
+  BaseScript: {fileID: 965952325}
+  ILib: {fileID: 294615358}
   rarity: 0
+  uncommonCharge: 0
   rareCharge: 0
   prize1roll: 000000000000000000000000
   prize2roll: 000000000000000000000000
+  rareItem: 000000000000000000000000
   experienceBuff: 0
   PrizeHUD: {fileID: 103346794}
+  ChoiceRarityImage:
+  - {fileID: 1399217570}
+  - {fileID: 1584876672}
+  - {fileID: 399531035}
+  RaritySprites:
+  - {fileID: 21300000, guid: b8255522228e3d64a82862cf09555060, type: 3}
+  - {fileID: 21300000, guid: 1c3c065ac69b85b43b55853e9ddfaa97, type: 3}
+  - {fileID: 21300000, guid: 500b09783b7ba164aad3697c862cf2eb, type: 3}
   FirstPrizeInfo:
   - {fileID: 806076055}
   - {fileID: 632161960}
@@ -4798,16 +4826,37 @@ MonoBehaviour:
   CommonFirstTooltips:
   - +6% Gun Fire Rate
   - +0.25 Gun Damage
-  - +8% Gun Accuracy
+  - +9% Gun Accuracy
   - +4 Gun Magazine Size
-  - +1 Luck
+  - + Luck
   CommonSecondTooltips:
   - +2% Damage
-  - +2,5% Fire Rate
+  - +2.5% Fire Rate
   - +3% Area Size
   - +3% Duration
   - + Experience
-  - + 10 Max Health & +1 Regeneration
+  - +10 Max Health & +1 Regeneration
+  UncommonFirstTooltips:
+  - +4.8% Gun Fire Rate & +0.2 Gun Damage
+  - +0.2 Gun Damage & +7.2% Gun Accuracy
+  - +7.2% Gun Accuracy & +3 Gun Magazine Size
+  - +3 Gun Magazine Size & +4.8% Gun Fire Rate
+  UncommonSecondTooltips:
+  - +3.2% Damage
+  - +4% Fire Rate
+  - +4.8% Area Size
+  - +4.8% Duration
+  - +16 Max Health & +2 Regeneration
+  RareFirstTooltips:
+  - +40% Gun Damage bu -25% Fire Rate
+  - +1 Gun Pierce with 75% pass Damage
+  - +2 Gun Magazine Size & +0.05 Gun Damage per Magazine Size
+  RareSecondTooltips:
+  - + 1 Projectile Count
+  - +6% Damage
+  - +7.5% Fire Rate
+  - +9% Area Size
+  - +9% Duration
 --- !u!1 &1665995297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,9 +5087,9 @@ RectTransform:
   - {fileID: 1195988465}
   - {fileID: 429623291}
   - {fileID: 1056055381}
-  - {fileID: 1807560147}
   - {fileID: 2014761922}
   - {fileID: 103346795}
+  - {fileID: 1807560147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6234,4 +6283,4 @@ SceneRoots:
   - {fileID: 965952323}
   - {fileID: 986251966}
   - {fileID: 865771348}
-  - {fileID: 1522282737}
+  - {fileID: 294615357}

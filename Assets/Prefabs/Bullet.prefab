@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pierce: 1
   damage: 0
-  passDamage: 1
+  passDamage: 0.75
   duration: 1.6
   TargetedLocation: {fileID: 0}
   ExplosionAreaObject: {fileID: 0}

@@ -14,6 +14,10 @@ public class Spawner : MonoBehaviour
     public void Activate()
     {
         spawning = true;
+        for (int i = 0; i < 3; i++)
+        {
+            charge[i] += difficulty[i];
+        }
         Spawn();
     }
 
@@ -28,6 +32,14 @@ public class Spawner : MonoBehaviour
         SpawnPoint.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0f);
 
         charge[0] += difficulty[0];
+        if (charge[0] >= 375)
+        {
+            charge[0] -= 300;
+            difficulty[0] -= 2;
+            charge[1] += 6;
+            difficulty[1]++;
+            charge[2] += 2;
+        }
         if (charge[0] >= 75)
         {
             charge[0] -= 75;
@@ -35,10 +47,12 @@ public class Spawner : MonoBehaviour
             if (charge[1] >= 75)
             {
                 charge[1] -= 75;
+                difficulty[0]++;
                 charge[2] += difficulty[2];
                 if (charge[2] >= 75)
                 {
                     charge[2] -= 75;
+                    difficulty[1]++;
                     Instantiate(EnemyPrefab[3], SpawnPoint.position, SpawnPoint.rotation);
                 }
                 else Instantiate(EnemyPrefab[2], SpawnPoint.position, SpawnPoint.rotation);

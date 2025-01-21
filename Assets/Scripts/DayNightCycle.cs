@@ -28,11 +28,11 @@ public class DayNightCycle : MonoBehaviour
         IconTransform.rotation = Quaternion.Euler(0f, 0f, 180f);
         SpawnerScript.frequency = 15.2f / (0.8f + 1.3f * cyclesCount);
         SpawnerScript.difficulty[0] = cyclesCount + ((4 + cyclesCount) * cyclesCount + cyclesCount) / 8;
-        SpawnerScript.difficulty[1] = ((5 + cyclesCount) * cyclesCount + cyclesCount * 2) / 13;
-        SpawnerScript.difficulty[2] = ((7 + cyclesCount) * cyclesCount + cyclesCount * 4) / 21;
+        SpawnerScript.difficulty[1] = ((6 + cyclesCount) * cyclesCount + cyclesCount * 2) / 13;
+        SpawnerScript.difficulty[2] = ((8 + cyclesCount) * cyclesCount + cyclesCount * 5) / 21;
         SpawnerScript.Activate();
 
-        Invoke("StartDay", 44f + 3f * cyclesCount);
+        Invoke("StartDay", 44.3f + 3.3f * cyclesCount);
     }
 
     void StartDay()

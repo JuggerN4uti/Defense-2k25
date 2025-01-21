@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6727173630646500411, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
       propertyPath: duration
-      value: 0.06
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6843268357597046717, guid: aa6b5138146ddd14d849a0a500cdb805, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1994745517765546318}
-  duration: 0.066
+  duration: 0.099
   startingFade: 0.784
   red: 0.941
   green: 0.471
