@@ -104,6 +104,58 @@ MonoBehaviour:
   rateScaling: 1
   sizeScaling: 0
   durationScaling: 0
+--- !u!1 &2612952204042179623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4651268354093128938}
+  - component: {fileID: 887827842893655097}
+  m_Layer: 0
+  m_Name: Item 08
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4651268354093128938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612952204042179623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1384768397267098469}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887827842893655097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612952204042179623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464d9880d6d3a5442b28e7cced029fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemSprite: {fileID: 21300000, guid: baa91fb0eea224642bdfb8c13b1feff2, type: 3}
+  ItemName: Missile Barrage
+  ItemDescription: Fires barrage of missiles in cursor Direction over duration
+  projectileScaling: 1
+  damageScaling: 1
+  rateScaling: 1
+  sizeScaling: 1
+  durationScaling: 1
 --- !u!1 &2705710254962930886
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +298,7 @@ Transform:
   - {fileID: 8990776034713237062}
   - {fileID: 1331033643607560651}
   - {fileID: 3951704683039036001}
+  - {fileID: 4651268354093128938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4456172986558655421
@@ -269,6 +322,7 @@ MonoBehaviour:
   - {fileID: 1263691876145001209}
   - {fileID: 4800500528431000903}
   - {fileID: 4074201143827833084}
+  - {fileID: 887827842893655097}
 --- !u!1 &5533837110500119123
 GameObject:
   m_ObjectHideFlags: 0

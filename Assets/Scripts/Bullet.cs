@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [Header("Values")]
     public int pierce;
     public float damage, passDamage;
-    public float duration;
+    public float duration, slow;
 
     [Header("AoE")]
     public Transform TargetedLocation;

@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     [Header("Shoot")]
     public GameObject BulletPrefab;
-    public GameObject Item2BulletPrefab;
+    public GameObject Item2BulletPrefab, Item8MissilePrefab;
     public Transform Barrel, ItemBarrel;
     public float task;
 
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         level = 1;
         expRequired = ExperienceRequiredCalculate();
         if (experienced)
-            GainXP(28); //166 +6%
+            GainXP(35); //239 +8%
         Reload();
     }
 
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
     public void GainXP(float value)
     {
         if (experienced)
-            value *= 1.06f;
+            value *= 1.08f;
         experience += value;
         totalExperience += value;
         if (experience >= expRequired)
@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
             experience -= expRequired;
             LevelUp();
         }
-        experienceBarFill.fillAmount = experience / totalExperience;
+        experienceBarFill.fillAmount = experience / expRequired;
     }
 
     void LevelUp()
@@ -263,6 +263,20 @@ public class Player : MonoBehaviour
             BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
             BulletScript.damage = BaseScript.Item2Damage() * DamageCalculation();
             bullet_body.AddForce(ItemBarrel.up * 16.8f, ForceMode2D.Impulse);
+        }
+    }
+
+    public void Item08(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            ItemBarrel.rotation = Quaternion.Euler(ItemBarrel.rotation.x, ItemBarrel.rotation.y, Rotation.rotation + Random.Range(-10.3f - 2f * amount, 10.3f + 2f * amount));
+            GameObject bullet = Instantiate(Item8MissilePrefab, ItemBarrel.position, ItemBarrel.rotation);
+            Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
+            BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
+            BulletScript.damage = BaseScript.Item8Damage() * DamageCalculation();
+            BulletScript.AreaSize = (0.2f + BaseScript.Item[8] * 0.022f) * SizeCalculation();
+            bullet_body.AddForce(ItemBarrel.up * Random.Range(13.7f, 15.3f), ForceMode2D.Impulse);
         }
     }
 

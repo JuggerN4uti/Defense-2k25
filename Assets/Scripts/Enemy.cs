@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Movement")]
     public float movementSpeed;
+    public float slow;
     public Vector3 center;
 
     [Header("Health")]
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (CurrentState == EnemyState.Run)
-            transform.position = Vector2.MoveTowards(transform.position, center, movementSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, center, MovementSpeed() * Time.deltaTime);
         else
         {
             task -= Time.deltaTime;
@@ -60,7 +61,7 @@ public class Enemy : MonoBehaviour
     void Attack()
     {
         BaseScript.TakeDamage(damage);
-        task += attackSpeed;
+        task += attackSpeed * (1f + slow);
     }
 
     void TakeDamage(float value)
@@ -103,6 +104,7 @@ public class Enemy : MonoBehaviour
         {
             BulletScript = other.GetComponent(typeof(Bullet)) as Bullet;
             TakeDamage(BulletScript.damage);
+            slow += BulletScript.slow;
             BulletScript.Struck();
             //Destroy(other.gameObject);
         }
@@ -122,5 +124,11 @@ public class Enemy : MonoBehaviour
     {
         TakeDamage(fenceDamage);
         Invoke("FenceTrigger", 1f);
+    }
+
+    // Checks
+    float MovementSpeed()
+    {
+        return movementSpeed / (1f + slow);
     }
 }
