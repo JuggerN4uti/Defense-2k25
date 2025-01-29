@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         level = 1;
         expRequired = ExperienceRequiredCalculate();
         if (experienced)
-            GainXP(35); //239 +8%
+            GainXP(35); //51 +9%
         Reload();
     }
 
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
     public void GainXP(float value)
     {
         if (experienced)
-            value *= 1.08f;
+            value *= 1.09f;
         experience += value;
         totalExperience += value;
         if (experience >= expRequired)
@@ -275,7 +275,7 @@ public class Player : MonoBehaviour
             Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
             BulletScript = bullet.GetComponent(typeof(Bullet)) as Bullet;
             BulletScript.damage = BaseScript.Item8Damage() * DamageCalculation();
-            BulletScript.AreaSize = (0.2f + BaseScript.Item[8] * 0.022f) * SizeCalculation();
+            BulletScript.AreaSize = (0.21f + BaseScript.Item[8] * 0.02f) * SizeCalculation();
             bullet_body.AddForce(ItemBarrel.up * Random.Range(13.7f, 15.3f), ForceMode2D.Impulse);
         }
     }

@@ -4851,7 +4851,7 @@ MonoBehaviour:
   movementSpeed: 4.2
   MoveTowards: {fileID: 647957379}
   move: {x: 0, y: 0}
-  experienced: 1
+  experienced: 0
   projectileCountIncrease: 0
   damageIncrease: 0
   fireRateIncrease: 0

@@ -180,12 +180,12 @@ public class Base : MonoBehaviour
             BulletScript.passDamage = 0.9f - (0.7f / (Item[1] + 1));
             bullet_body.AddForce(Barrel.up * 18.2f, ForceMode2D.Impulse);
         }
-        Invoke("Item01", 1.2f / PlayerScript.FireRateCalculation());
+        Invoke("Item01", 1.18f / PlayerScript.FireRateCalculation());
     }
 
     public float Item1Damage()
     {
-        return (7.9f + 2.1f * Item[1]) * PlayerScript.DamageCalculation();
+        return (7.9f + 2.11f * Item[1]) * PlayerScript.DamageCalculation();
     }
 
     void Item02()
@@ -215,7 +215,7 @@ public class Base : MonoBehaviour
         }
         size = 1f * PlayerScript.SizeCalculation(0.1f);
         OrbsOrbitObject.transform.localScale = new Vector3(size, size, 1f);
-        rotation = (0.295f + 0.016f * Item[3]) * PlayerScript.DurationCalculation(0.6f);
+        rotation = (0.299f + 0.017f * Item[3]) * PlayerScript.DurationCalculation(0.6f);
         OrbsRotateScript.zAngle = -rotation;
     }
 
@@ -258,7 +258,7 @@ public class Base : MonoBehaviour
         BulletScript.AreaSize = (0.345f + Item[5] * 0.036f) * PlayerScript.SizeCalculation();
         BulletScript.AreaDuration = (6.77f + Item[5] * 0.224f) * PlayerScript.DurationCalculation();
 
-        temp = 1.55f / (1f + 0.05f * Item[5]);
+        temp = 1.52f / (1f + 0.05f * Item[5]);
         Invoke("Item05", temp / PlayerScript.FireRateCalculation(1.12f));
     }
 
@@ -277,13 +277,13 @@ public class Base : MonoBehaviour
         BulletScript.passDamage = 1f - (0.8f / (PlayerScript.projectileCountIncrease + 2));
         bullet_body.AddForce(RotatingBarrel.up * 16.6f, ForceMode2D.Impulse);
 
-        temp = 0.432f / (1f + 0.12f * Item[6] + 0.22f * PlayerScript.projectileCountIncrease);
-        Invoke("Item06", temp / PlayerScript.FireRateCalculation(1.04f));
+        temp = 0.42f / (1f + 0.12f * Item[6] + 0.22f * PlayerScript.projectileCountIncrease);
+        Invoke("Item06", temp / PlayerScript.FireRateCalculation(1.05f));
     }
 
     public float Item6Damage()
     {
-        return (7.4f + 2.6f * Item[6]) * PlayerScript.DamageCalculation();
+        return (7.7f + 2.55f * Item[6]) * PlayerScript.DamageCalculation();
     }
 
     void Shockwave()
@@ -307,10 +307,10 @@ public class Base : MonoBehaviour
     void Item08()
     {
         barraging = true;
-        missileFreq = 0.13f / (1f + 0.06f * Item[8] + 0.15f * PlayerScript.projectileCountIncrease);
-        bonusMissile = 17 + 4 * Item[8] + 11 * PlayerScript.projectileCountIncrease;
+        missileFreq = 0.16f / (1f + 0.05f * Item[8] + 0.15f * PlayerScript.projectileCountIncrease);
+        bonusMissile = 15 + 5 * Item[8] + 18 * PlayerScript.projectileCountIncrease;
         Invoke("Item08Fire", missileFreq);
-        Invoke("Item08End", (0.52f + Item[8] * 0.02f) * PlayerScript.DurationCalculation());
+        Invoke("Item08End", (0.49f + Item[8] * 0.02f) * PlayerScript.DurationCalculation());
     }
 
     public float Item8Damage()
@@ -321,7 +321,7 @@ public class Base : MonoBehaviour
     void Item08Fire()
     {
         PlayerScript.Item08(1 + bonusMissile / 70);
-        bonusMissile += 13 + 4 * Item[8] + 6 * PlayerScript.projectileCountIncrease;
+        bonusMissile += 14 + 4 * Item[8] + 5 * PlayerScript.projectileCountIncrease;
 
         if (barraging)
             Invoke("Item08Fire", missileFreq);
@@ -330,7 +330,7 @@ public class Base : MonoBehaviour
     void Item08End()
     {
         barraging = false;
-        temp = 4f / (1f + 0.04f * Item[8]);
+        temp = 3.5f / (1f + 0.06f * Item[8]);
         Invoke("Item08", temp / PlayerScript.FireRateCalculation(1.1f));
     }
 }
